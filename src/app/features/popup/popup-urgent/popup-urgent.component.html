@@ -1,0 +1,90 @@
+<div class="container popup-main">
+    <div class="row popup-header-div header-urgent">
+        <div class="col-12">
+            URGENT WEBSITE REQUEST
+            <button type="button" class="close-btn" (click)="closeMe()">&times;</button>
+        </div>
+    </div>
+    <div class="popup-body">
+        <form (ngSubmit)="onSubmit()">
+            <div class="row input-row">
+                <div class="col-12">
+                    <label>Type of Problem*</label>
+                    <input mdbInput type="text" class="form-control" id="type"  [(ngModel)]="model.type" name="type" #type="ngModel"/>
+                </div>
+            </div>
+            <div class="row input-row">
+                <div class="col-12">
+                    <label>Description*</label>
+                    <textarea mdbInput rows="5" cols="40" class="form-control" [(ngModel)]="model.description" name="description" #description="ngModel"></textarea>
+                </div>
+            </div>
+            <div class="row input-row">
+                <div class="col-12">
+                    <label>URL/Page(s) Identified*</label>
+                    <div class="row contact-reviews" *ngFor="let whoProvide of model.urlPages; let i = index; trackBy: onTrackBy">
+                        <div class="col-sm-11 col-10">
+                            <input mdbInput type="text" class="form-control" [name]="'urlPage'+i" [(ngModel)]="model.urlPages[i]"/>
+                        </div>
+                        <div class="col-sm-1 col-2">
+                            <button class="add-button" (click)="i == 0 ? addUrlPages(): removeUrlPages(i)">{{i==0?'+':'-'}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row input-row">
+                <div class="col-sm-6 col-12" (click)="file.click()">
+                    <div draggable="true" ngClass="{{dragAreaClass}}">
+                        <div class="row">
+                            <span class="file-icon">
+                                <fa-icon [icon]="['fas', 'upload']"></fa-icon>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <div class="drag-txt">Click or Drag & Drop your files here</div>
+                                <input type="file" #file [multiple]="false" (change)="onFileChange($event)"
+                                    style="display:none" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="error" *ngIf="error">
+                        Only one file at time allow
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12" (click)="file.click()">
+                    <div draggable="true" ngClass="{{dragAreaClass}}">
+                        <div class="row">
+                            <span class="file-icon">
+                                <fa-icon [icon]="['fas', 'upload']"></fa-icon>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <div class="drag-txt">Click or Drag & Drop your images here</div>
+                                <input type="file" #file [multiple]="false" (change)="onFileChange($event)"
+                                    style="display:none" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="error" *ngIf="error">
+                        Only one file at time allow
+                    </div>
+                </div>
+            </div>
+            <div class="row input-row">
+                <div class="col-sm-6 col-12">
+                    <label>Device Issue was Discovered on</label>
+                    <input mdbInput type="text" class="form-control" id="deviceIssue"  [(ngModel)]="model.deviceIssue" name="deviceIssue" #deviceIssue="ngModel"/>
+                    <label>Ex: Iphone, Android, Laptop, Tablet</label>
+                </div>
+                <div class="col-sm-6 col-12">
+                    <label>Browser Issue was Discovered on</label>
+                    <input mdbInput type="text" class="form-control" id="browserIssue"  [(ngModel)]="model.browserIssue" name="browserIssue" #browserIssue="ngModel"/>
+                    <label>Ex: Chrome, Safari, Firefox, Explorer</label>
+                </div>
+            </div>
+            <button type="submit" mat-raised-button class="submit-button">Submit</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="container popup-main">
+    <div class="popup-body">
+        <form (ngSubmit)="onSubmit()">
+            <div class="row input-row">
+                <div class="col-sm-5 col-12">
+                    <button class="status-btn activee-btn">REQUEST CHANGE</button>
+                </div>
+            </div>
+            <div class="row input-row">
+                <div class="col-12">
+                    <textarea mdbInput rows="5" cols="40" placeholder="Type reason here..." class="form-control" [(ngModel)]="model" name="reason" #reason="ngModel"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 submit-row">
+                    <button type="submit" mat-raised-button class="submit-button">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
