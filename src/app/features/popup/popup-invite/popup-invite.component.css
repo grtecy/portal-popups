@@ -1,15 +1,15 @@
-.checkbox{
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  padding-left: 15px;
+.checkbox {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-left: 15px;
 }
-.checkbox input{
-  width: 15px;
-  height: 15px;
-  float: left;
-  margin-right: 10px;
+.checkbox input {
+    width: 15px;
+    height: 15px;
+    float: left;
+    margin-right: 10px;
 }
-.checkbox label{
-  margin-bottom: 0;
+.checkbox label {
+    margin-bottom: 0;
 }

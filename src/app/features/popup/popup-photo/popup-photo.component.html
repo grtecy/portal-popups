@@ -6,43 +6,119 @@
         </div>
     </div>
     <div class="popup-body">
-        <form (ngSubmit)="onSubmit()">
+        <form [formGroup]="requiestForm" (ngSubmit)="onSubmit()">
             <div class="row input-row">
                 <div class="col-sm-6 col-12">
                     <label>Project Name*</label>
-                    <input mdbInput type="text" class="form-control" id="name"  [(ngModel)]="model.name" name="name" #name="ngModel"/>
+                    <input
+                        mdbInput
+                        type="text"
+                        class="form-control"
+                        id="name"
+                        formControlName="name"
+                        name="name"
+                    />
+                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                        <div *ngIf="f.name.errors.required">This is required</div>
+                    </div>
                 </div>
                 <div class="col-sm-6 col-12">
                     <label>Photoshoot or Video Shoot?*</label>
-                    <select mdbInput required class="form-control" name="shootType" [(ngModel)]="model.shootType" #shootType="ngModel">
-                        <option *ngFor="let type of shootTypes" [value]="type.name" >{{type.title}}</option>
+                    <select
+                        mdbInput
+                        required
+                        class="form-control"
+                        formControlName="shootType"
+                        name="shootType"
+                    >
+                        <option *ngFor="let type of shootTypes" [value]="type.name">
+                            {{ type.title }}
+                        </option>
                     </select>
+                    <div *ngIf="submitted && f.shootType.errors" class="invalid-feedback">
+                        <div *ngIf="f.shootType.errors.required">This is required</div>
+                    </div>
                 </div>
             </div>
             <div class="row input-row">
                 <div class="col-12">
                     <label>Description*</label>
-                    <textarea mdbInput rows="5" cols="40" class="form-control" [(ngModel)]="model.description" name="description" #description="ngModel"></textarea>
+                    <textarea
+                        mdbInput
+                        rows="5"
+                        cols="40"
+                        class="form-control"
+                        formControlName="description"
+                        name="description"
+                    ></textarea>
+                    <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                        <div *ngIf="f.description.errors.required">This is required</div>
+                    </div>
                 </div>
             </div>
             <div class="row input-row">
+                <div class="col-sm-6 col-12"></div>
                 <div class="col-sm-6 col-12">
                     <label>Contact(s) for Scheduling</label>
-                    <div class="row contact-reviews" *ngFor="let contactReview of model.contactSchedules; let i = index; trackBy: onTrackBy">
+                    <div
+                        class="row contact-reviews"
+                        *ngFor="
+                            let contactSchedule of contactSchedules;
+                            let i = index;
+                            trackBy: onTrackBy
+                        "
+                    >
                         <div class="col-10">
-                            <select mdbInput required class="form-control" [name]="'contactSchedule'+i" [(ngModel)]="model.contactSchedules[i]" (change)="ChangeContactsValue($event, i)">
-                                <option [value]="item.name" *ngFor="let item of scheduleOptions">{{item.title}}</option>
+                            <select
+                                mdbInput
+                                required
+                                class="form-control"
+                                formControlName="contactSchedules"
+                                [name]="'contactSchedule' + i"
+                                (change)="ChangeContactsValue($event, i)"
+                            >
+                                <option [value]="item.name" *ngFor="let item of scheduleOptions">
+                                    {{ item.title }}
+                                </option>
                             </select>
                         </div>
-                        <div class="col-2">
-                            <button class="add-button" (click)="i == 0 ? addContacts(): removeContacts(i)">{{i==0?'+':'-'}}</button>
+                        <div class="col-2 d-flex align-items-center">
+                            <div
+                                class="add-button"
+                                (click)="i == 0 ? addContacts() : removeContacts(i)"
+                            >
+                                <fa-icon *ngIf="i==0" [icon]="['fas', 'plus']"></fa-icon>
+                                <fa-icon *ngIf="i!=0" [icon]="['fas', 'minus']"></fa-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row input-row">
+                <div class="col-12 col-sm-6">
+                    <div *ngFor="let xb of filesNames let i = index;" class="row file-list">
+                        <div class="col-10">{{ xb }}</div>
+                        <div class="col-2 text-right">
+                            <fa-icon class="remove-file" [icon]="['fas', 'minus-circle']" (click)="removeFile(i)"></fa-icon>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <div *ngFor="let xb of imageNames; let i = index;" class="row file-list">
+                        <div class="col-10">{{ xb }}</div>
+                        <div class="col-2 text-right">
+                            <fa-icon class="remove-file" [icon]="['fas', 'minus-circle']" (click)="removeImage(i)"></fa-icon>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row input-row">
                 <div class="col-sm-6 col-12" (click)="file.click()">
-                    <div draggable="true" ngClass="{{dragAreaClass}}">
+                    <div
+                        draggable="true"
+                        ngClass="{{ dragAreaClass }}"
+                        (drop)="uploadFiles($event)"
+                    >
                         <div class="row">
                             <span class="file-icon">
                                 <fa-icon [icon]="['fas', 'upload']"></fa-icon>
@@ -51,17 +127,25 @@
                         <div class="row">
                             <div class="col-md-12 text-center">
                                 <div class="drag-txt">Click or Drag & Drop your files here</div>
-                                <input type="file" #file [multiple]="false" (change)="onFileChange($event)"
-                                    style="display:none" />
+                                <input
+                                    type="file"
+                                    #file
+                                    [multiple]="true"
+                                    formControlName="filesUploaded"
+                                    (change)="onFileChange($event)"
+                                    style="display: none"
+                                />
                             </div>
                         </div>
                     </div>
-                    <div class="error" *ngIf="error">
-                        Only one file at time allow
-                    </div>
+                    <div class="error" *ngIf="error">Only one file at time allow</div>
                 </div>
-                <div class="col-sm-6 col-12" (click)="file.click()">
-                    <div draggable="true" ngClass="{{dragAreaClass}}">
+                <div class="col-sm-6 col-12" (click)="image.click()">
+                    <div
+                        draggable="true"
+                        ngClass="{{ dragAreaClass }}"
+                        (drop)="uploadImages($event)"
+                    >
                         <div class="row">
                             <span class="file-icon">
                                 <fa-icon [icon]="['fas', 'upload']"></fa-icon>
@@ -70,14 +154,18 @@
                         <div class="row">
                             <div class="col-md-12 text-center">
                                 <div class="drag-txt">Click or Drag & Drop your images here</div>
-                                <input type="file" #file [multiple]="false" (change)="onFileChange($event)"
-                                    style="display:none" />
+                                <input
+                                    type="file"
+                                    #image
+                                    formControlName="imagesUploaded"
+                                    [multiple]="true"
+                                    (change)="onImageChange($event)"
+                                    style="display: none"
+                                />
                             </div>
                         </div>
                     </div>
-                    <div class="error" *ngIf="error">
-                        Only one file at time allow
-                    </div>
+                    <div class="error" *ngIf="error">Only one file at time allow</div>
                 </div>
             </div>
             <button type="submit" mat-raised-button class="submit-button">Submit</button>

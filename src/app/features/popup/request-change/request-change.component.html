@@ -1,14 +1,28 @@
 <div class="container popup-main">
     <div class="popup-body">
-        <form (ngSubmit)="onSubmit()">
+        <form [formGroup]="changeForm" (ngSubmit)="onChangeSubmit()">
             <div class="row input-row">
                 <div class="col-sm-5 col-12">
-                    <button class="status-btn activee-btn">REQUEST CHANGE</button>
+                    <button type="submit" class="status-btn activee-btn">REQUEST CHANGE</button>
                 </div>
             </div>
             <div class="row input-row">
                 <div class="col-12">
-                    <textarea mdbInput rows="5" cols="40" placeholder="Type reason here..." class="form-control" [(ngModel)]="model" name="reason" #reason="ngModel"></textarea>
+                    <textarea
+                        mdbInput
+                        rows="4"
+                        cols="40"
+                        class="form-control"
+                        formControlName="reason"
+                        name="reason"
+                        placeholder="Type reason here..."
+                    ></textarea>
+                    <div
+                        *ngIf="changeFormSubmitted && changef.reason.errors"
+                        class="invalid-feedback"
+                    >
+                        <div *ngIf="changef.reason.errors.required">This is required</div>
+                    </div>
                 </div>
             </div>
             <div class="row">

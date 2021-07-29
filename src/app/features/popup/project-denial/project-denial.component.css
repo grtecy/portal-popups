@@ -1,21 +1,20 @@
-.submit-row{
+.submit-row {
     display: flex;
     justify-content: flex-end;
 }
-.status-btn{
-    
+.status-btn {
     color: white;
     border: none;
     width: 100%;
     padding-top: 5px;
     padding-bottom: 5px;
 }
-.disable-btn{
+.disable-btn {
     background: gray;
 }
-.activee-btn{
+.activee-btn {
     background: #003b70;
 }
-.deny-btn{
+.deny-btn {
     background-color: red;
 }

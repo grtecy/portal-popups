@@ -10,23 +10,55 @@
             <div class="row input-row">
                 <div class="col-sm-6 col-12">
                     <label>First Name</label>
-                    <input mdbInput type="text" class="form-control" id="firstName"  [(ngModel)]="model.firstName" name="firstName" #firstName="ngModel"/>
+                    <input
+                        mdbInput
+                        type="text"
+                        class="form-control"
+                        id="firstName"
+                        [(ngModel)]="model.firstName"
+                        name="firstName"
+                        #firstName="ngModel"
+                    />
                 </div>
                 <div class="col-sm-6 col-12">
                     <label>Last Name</label>
-                    <input mdbInput type="text" class="form-control" id="lastName"  [(ngModel)]="model.lastName" name="lastName" #lastName="ngModel"/>
+                    <input
+                        mdbInput
+                        type="text"
+                        class="form-control"
+                        id="lastName"
+                        [(ngModel)]="model.lastName"
+                        name="lastName"
+                        #lastName="ngModel"
+                    />
                 </div>
             </div>
             <div class="row input-row">
                 <div class="col-12">
                     <label>Phone Number</label>
-                    <input mdbInput type="text" class="form-control" id="phone"  [(ngModel)]="model.phone" name="phone" #phone="ngModel"/>
+                    <input
+                        mdbInput
+                        type="text"
+                        class="form-control"
+                        id="phone"
+                        [(ngModel)]="model.phone"
+                        name="phone"
+                        #phone="ngModel"
+                    />
                 </div>
             </div>
             <div class="row input-row">
                 <div class="col-12">
                     <label>Email</label>
-                    <input mdbInput type="text" class="form-control" id="email"  [(ngModel)]="model.email" name="email" #email="ngModel"/>
+                    <input
+                        mdbInput
+                        type="text"
+                        class="form-control"
+                        id="email"
+                        [(ngModel)]="model.email"
+                        name="email"
+                        #email="ngModel"
+                    />
                 </div>
             </div>
             <div class="row input-row">
@@ -37,40 +69,67 @@
             <div class="row">
                 <div class="col-12">
                     <div class="checkbox">
-                        <input mdbInput type="checkbox" class="form-control" id="manageRequests"  [(ngModel)]="model.manageRequests" name="manageRequests" #manageRequests="ngModel"/>
-                        <label for="manageRequests">
-                            Manage Requests
-                        </label>
+                        <input
+                            mdbInput
+                            type="checkbox"
+                            class="form-control"
+                            id="manageRequests"
+                            [(ngModel)]="model.manageRequests"
+                            name="manageRequests"
+                            #manageRequests="ngModel"
+                        />
+                        <label for="manageRequests"> Manage Requests </label>
                     </div>
                     <div class="checkbox">
-                        <input mdbInput type="checkbox" class="form-control" id="manageSocial"  [(ngModel)]="model.manageSocial" name="manageSocial" #manageRequests="ngModel"/>
-                        <label for="manageSocial">
-                            Manage Social Media
-                        </label>
+                        <input
+                            mdbInput
+                            type="checkbox"
+                            class="form-control"
+                            id="manageSocial"
+                            [(ngModel)]="model.manageSocial"
+                            name="manageSocial"
+                            #manageRequests="ngModel"
+                        />
+                        <label for="manageSocial"> Manage Social Media </label>
                     </div>
                     <div class="checkbox">
-                        <input mdbInput type="checkbox" class="form-control" id="manageReviews"  [(ngModel)]="model.manageReviews" name="manageReviews" #manageReviews="ngModel"/>
-                        <label for="manageReviews">
-                            Manage Reviews
-                        </label>
+                        <input
+                            mdbInput
+                            type="checkbox"
+                            class="form-control"
+                            id="manageReviews"
+                            [(ngModel)]="model.manageReviews"
+                            name="manageReviews"
+                            #manageReviews="ngModel"
+                        />
+                        <label for="manageReviews"> Manage Reviews </label>
                     </div>
                     <div class="checkbox">
-                        <input mdbInput type="checkbox" class="form-control" id="manageBusiness"  [(ngModel)]="model.manageBusiness" name="manageBusiness" #manageBusiness="ngModel"/>
-                        <label for="manageBusiness">
-                            Manage Business Info
-                        </label>
+                        <input
+                            mdbInput
+                            type="checkbox"
+                            class="form-control"
+                            id="manageBusiness"
+                            [(ngModel)]="model.manageBusiness"
+                            name="manageBusiness"
+                            #manageBusiness="ngModel"
+                        />
+                        <label for="manageBusiness"> Manage Business Info </label>
                     </div>
                     <div class="checkbox">
-                        <input mdbInput type="checkbox" class="form-control" id="makeAdmin"  [(ngModel)]="model.makeAdmin" name="makeAdmin" #makeAdmin="ngModel"/>
-                        <label for="makeAdmin">
-                            Make Admin
-                        </label>
+                        <input
+                            mdbInput
+                            type="checkbox"
+                            class="form-control"
+                            id="makeAdmin"
+                            [(ngModel)]="model.makeAdmin"
+                            name="makeAdmin"
+                            #makeAdmin="ngModel"
+                        />
+                        <label for="makeAdmin"> Make Admin </label>
                     </div>
                 </div>
             </div>
-
-            
-
             <button type="submit" mat-raised-button class="submit-button">Submit</button>
         </form>
     </div>

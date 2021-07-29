@@ -1,19 +1,41 @@
 <div class="container popup-main">
     <div class="popup-body">
-        <form (ngSubmit)="onSubmit()">
+        <form [formGroup]="denyForm" (ngSubmit)="onDenySubmit()">
             <div class="row input-row">
                 <div class="offset-sm-9 col-sm-3 col-12">
-                    <button class="status-btn deny-btn">DENY</button>
+                    <button type="submit" class="status-btn deny-btn">DENY</button>
                 </div>
             </div>
             <div class="row input-row">
                 <div class="col-12">
-                    <textarea mdbInput rows="5" cols="40" placeholder="Type reason here..." class="form-control" [(ngModel)]="model.reason" name="reason" #reason="ngModel"></textarea>
+                    <textarea
+                        mdbInput
+                        rows="4"
+                        cols="40"
+                        class="form-control"
+                        formControlName="reason"
+                        name="reason"
+                        placeholder="Type reason here..."
+                    ></textarea>
+                    <div *ngIf="denyFormSubmitted && denyf.reason.errors" class="invalid-feedback">
+                        <div *ngIf="denyf.reason.errors.required">This is required</div>
+                    </div>
                 </div>
             </div>
             <div class="row input-row">
-                <div *ngFor="let item of denyOptions; let i = index;  trackBy: onTrackBy" class="col-sm-4 col-12">
-                    <button class="status-btn {{model.type == item.name?'activee-btn':'disable-btn'}}" (click)="changeStatus(item.name)">{{item.title}}</button>
+                <div
+                    *ngFor="let item of denyOptions; let i = index; trackBy: onTrackBy"
+                    class="col-sm-4 col-12"
+                >
+                    <button
+                        type="button"
+                        class="status-btn {{
+                            denyf.type.value == item.name ? 'activee-btn' : 'disable-btn'
+                        }}"
+                        (click)="changeStatus(item.name)"
+                    >
+                        {{ item.title }}
+                    </button>
                 </div>
             </div>
             <div class="row">

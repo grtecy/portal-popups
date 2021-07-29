@@ -1,3 +1,6 @@
-.header-urgent{
+.header-urgent {
     background-color: #d1232a !important;
+}
+.invalid-feedback {
+    display: inline;
 }

@@ -31,6 +31,12 @@ import {
   FaIconLibrary
 } from "@fortawesome/angular-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
+import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
+import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faMinus } from '@fortawesome/free-solid-svg-icons';
+
+
 
 @NgModule({
   declarations: [
@@ -73,6 +79,6 @@ import { faUpload } from "@fortawesome/free-solid-svg-icons";
 })
 export class AppModule {
   constructor(private library: FaIconLibrary) {
-    library.addIcons(faUpload);
+    library.addIcons(faUpload, faMinusCircle, faPlusCircle, faPlus, faMinus);
   }
 }
